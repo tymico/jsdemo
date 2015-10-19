@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>设置超时</title>
+        <script>
+            <!--
+            var _timer;
+            function start_timer()
+            {
+                _timer = window.setTimeout("alert('太晚了！！')", 5000);
+            }
+            function clear_timer()
+            {
+                window.clearTimeout(_timer);
+                alert("清除成功");
+            }
+            -->
+        </script>
+    </head>
+    <body onload="start_timer()">
+        <div>
+            <form name="form1">
+                <h2>请在5秒内单击以下按钮</h2>
+                <input type="button" value="清除" onclick="clear_timer()">
+            </form>
+        </div>
+    </body>
+</html>

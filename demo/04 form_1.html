@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>form对象属性</title>
+        <script type="text/javascript">
+            <!--
+            function show()
+            {
+                var newin = window.open("","","height=300,width=360");
+                newin.document.write("文档中共包含" + document.form1.length + "个元素，分别是:<p>");
+                for (int i =0; i < document.form1.length; ++i) {
+                    newin.document.write("<ul>");
+                    newin.document.write("<li>" + document.form1.element[i].name + "</li>");
+                    newin.document.write("</ul>");
+                }
+                return false;
+            }
+            -->
+        </script>
+    </head>
+    <body>
+        <!--<form action="http://www.test.com/bin/process.asp" mothed=POST name="form1" target="_top" onreset="alert("重置输入")" onsubmit="return show()">-->
+        <form name="form1">
+            <h3>单击提交按钮显示信息</h3>
+            姓名：<input name="edit1"><br>
+            年龄：<input name="edit2"><br>
+            <!--<input type="submit" name="button1" value="提交">-->
+            <input type="button" name="button1" value="提交" onclick="show()">
+            <!--<input type="reset" name="button2" value="重置">-->
+            <input type="button" name="button2" value="重置" onclick="alert('重置输入')">
+        </form>
+    </body>
+</html>

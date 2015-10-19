@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <center>
+        <form action="" name="form1">
+            <br>
+            <br>
+            <h1>选择你喜欢的颜色</h1>
+            <br>
+            <table border bgcolor=cyan width=200>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked1()">红</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked2()">橙</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked3()">黄</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked4()">绿</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked5()">青</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked6()">蓝</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name=radioButtons onclick="radio_clicked7()">紫</td>
+                </tr>
+            </table>
+            <input type="button" value="确认" onclick="ok_clicked()">
+            <input type="button" value="取消" onclick="cancel_clicked()">
+        </form>
+    </center>
+</body>
+<script type="text/javascript">
+    <!--
+    var selected_color = "没有选择";
+    function radio_clicked1()
+    {
+        selected_color = "红";
+    }
+    function radio_clicked2()
+    {
+        selected_color = "橙";
+    }
+    function radio_clicked3()
+    {
+        selected_color = "黄";
+    }
+    function radio_clicked4()
+    {
+        selected_color = "绿";
+    }
+    function radio_clicked5()
+    {
+        selected_color = "青";
+    }
+    function radio_clicked6()
+    {
+        selected_color = "蓝";
+    }
+    function radio_clicked7()
+    {
+        selected_color = "紫";
+    }
+    function ok_clicked()
+    {
+        window.returnValue = "您选择的颜色为：" + selected_color;
+        window.close();
+    }
+    function cancel_clicked()
+    {
+        window.returnValue = "您没有作出选择";
+        window.close();
+    }
+    //-->
+</script>
+</html>

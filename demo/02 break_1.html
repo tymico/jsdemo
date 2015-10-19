@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        <!--
+        document.write("break，continue的应用<br><br>")
+        var hightNum = 0;
+        var n = 175;
+        for (var i = 0; i < n; ++i) {
+            document.write(i + "<br>");
+            if (i < 0) {
+                document.write("n 不能为负数。");
+                break;
+            }
+            if (i * i <= n) {
+                hightNum = i;
+                continue;
+            }
+            document.write("<br>完成。");
+            break;
+        }
+        document.write("<br>小于或等于" + n + "的平方根的整数 ＝ " + hightNum);
+        document.write("<br><br>");
+        document.write('<hr size="0" width="50%" align="left">');
+        document.write("<br>");
+        var stopX = 4;
+        var stopY = 9;
+        document.write("标签语句");
+        document.write("显示所有从(0,0)到(" + stopX + "," + stopY + ")之间的坐标：<br>");
+        loopX:
+        for (var x = 0; x < 10; ++x) {
+            for (var y = 0; y < 10; ++y) {
+                document.write("(" + x + "," + y + ")  ");
+                if (x == stopX && y == stopY) {
+                    break loopX;
+                }
+            }
+            document.write("<br>");
+        }
+        document.write("<br>循环完成后 x = " + x);
+        document.write("<br>循环完成后 y = " + y);
+        //-->
+    </script>
+</body>
+</html>

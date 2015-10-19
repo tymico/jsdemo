@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>状态信息</title>
+    <script type="text/javascript">
+        <!--
+        window.defaultStatus = "欢迎访问联谊主页";
+        function changeStatus()
+        {
+            window.status = "单击这里进入娱乐焦点页面";
+        }
+        function changeDefaultStatus()
+        {
+            window.defaultStatus = window.document.statusForm.messageList.option[window.document.statusForm.messageList.selectedIndex].text;
+        }
+        //-->
+    </script>
+</head>
+<body>
+    <p>&#160;</p>
+    <p>&#160;</p>
+    <p align=center><font color="#008040"><font size=7><strong>http://www.ly.scit.edu.cn</strong></font></font></p>
+    <p align=center><a href="http://www.ly.scit.edu.cn" onMouseOver="changeStatus()">Go...</a></p>
+    <form action="" name="statusForm" method="POST">
+        <p>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <p align=center><font size=1>从下拉菜单中选择相应的选项，则状态栏信息发生改变</font></p>
+        <p align=center>
+            <select id="" name="messageList" size=1>
+                <option value="" selected>欢迎访问联谊</option>
+                <option value="">联谊娱乐焦点</option>
+                <option value="">联谊软件仓库</option>
+                <option value="">联谊影院广场</option>
+            </select>
+            <input type="button" name="Change" value="Change" onClick="changeDefaultStatus()">
+        </p>
+    </form>
+</body>
+</html>

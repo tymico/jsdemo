@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>设置定时</title>
+        <script type="text/javascript">
+            <!--
+            var _timer;
+            function start_timer()
+            {
+                _timer = window.setInterval("acquire_time()", 300);
+            }
+            function stop_timer()
+            {
+                window.clearInterval(_timer);
+            }
+            function acquire_time()
+            {
+                var now = new Date;
+                window.document.form1.timer.value = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            }
+            -->
+        </script>
+    </head>
+    <body onload="start_timer()">
+        <div align=center>
+            <form name=form1>
+                <h2>现在时间</h2>
+                <input name="timer">
+                <h2>单击以下按钮停止计时器</h2>
+                <input type="button" value="停止" onclick="stop_timer()">
+                <h2>单击以下按钮重新启动计时器</h2>
+                <input type="button" value="重新启动" onclick=start_timer()>
+            </form>
+        </div>
+    </body>
+</html>

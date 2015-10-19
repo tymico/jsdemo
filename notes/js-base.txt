@@ -1,0 +1,420 @@
+                               JavaScript权威指南
+
+> 保留字
+    break       case        catch       continue        default
+    delete      do          else        false           finally
+    for         function    if          in              instanceof
+    new         null        return      switch          this
+    throw       true        try         typeof          var
+    void        while       with
+
+> 数字
+    整数： -2^32~2^32
+    double: -2^53~2^53
+    八进制直接量：以0开头，077
+    十六进制直接量：以0x开头，0xAF
+    将数字转换字符串，可用toString()，底数在2~36之间，如：
+        var y = (252).toString(0x10)    // y 为‘101’
+    直接量使用toString()须用括号将直接量括起来。
+
+> 特殊数值常量
+    Infinity        无穷大特殊值
+    NaN         特殊非数字值    
+    Number.MAX_VALUE    最大数字
+    Number.MIN_VALUE    最小数字(与0最接近数字)
+    Number.NaN      特殊非数字值
+    Number.POSITIVE_INFINITY    正无穷大
+    Number.NEGATIVE_INFINITY    负无穷大
+
+> 变量
+    js中没有块级作用域，因此，函数中声明的所有变量，在整个函数中都有效。
+    变量类型有基本类型及引用类型，基本类型在内存中大小固定。
+    引用赋值.举例：
+        var a = [1, 2, 3]
+        var b = a;
+        c[0] = 99;
+        alert(b);  /*显示b值为[99,2,3]*/ 
+
+> 语句
+    >> 标签语句
+        非保留字加上“:”即可构成标签语句
+        break,continue可结合标签语句使用
+    >> for/in
+        可以遍历对象的所有可能属性
+    >> try/catch/finally
+        只要执行了try语句块，finally语句一定会被执行，即使try语句块执行了return,continue等语句。
+    >> width
+        应避免使用with语句，因难以优化，速度慢
+
+> 函数
+    >> lambda函数
+    >> 函数可以嵌套
+    >> 函数几种实现，如下：
+        function f(x) { return x*x; } /*function语句*/ 
+        var f = new Function("x", "return x*x;"); /*Function()构造函数*/ 
+        var f = function(x) { return x*x; }; /*函数直接量*/ 
+        函数直接量也可以指定函数名，如下：
+            var f = function fact(x) { if (x <= 1) return a; else return x * fact(x-1); };
+        Function()构造函数每次调用时需被解析和编译，而函数直接量只会被解析和编译一次。
+    >> 函数可以赋给对象的属性
+        var o = new Object;
+        o.square = new Function("x", "return x*x;");
+        y = o.square(16);
+    >> 函数参数
+        函数调用时实参数少于函数定义的形参数，则多余形参被赋予undefined；若实参多于形参，则多余的实参被忽略。
+        函数体内，标识符arguments是Aguments的对象，保存所有实参，可通过arguments[i]来取得参数引用，arguments.length可获得参数个数，arguments.callee取得函数当前函数引用。
+        函数对象的length属性返回的是函数的形参个数，可通过arguments.callee.length调用。
+    >> 函数可以定义自己的函数属性
+    >> 函数方法apply()和call()
+
+> 对象
+    > 对象初始化可以通过对象直接量方式实现，如下：
+        var circle = { x:0, y:0, radius:2 }
+    > 对象属性可以通过直接给该对象属性赋值来创建，如：
+        var book = new Object
+        book.title = "JavaScript: The Definitive Guide"
+        book.chapter1 = new Object();
+        book.chapter1.title = "Introdaction to JavaScript";
+        book.chapter1.pages = 19;
+        可能使用运算符delete来删除一个对象的属性;
+    > 枚举属性
+        function DisplayNames(obj) {
+            var names = "";
+            for (var name in obj) { names += name + "\n"; }
+            alert(names);
+        }
+        for/in列出属性没有特定顺序，且只能列出所有用户定义的属性，而不能枚举出某些预定义的属性或方法。
+    > 定义构造函数
+        构造函数是具有两个特性的JavaScript函数:
+            它由new运算符调用
+            传递给它的是一个对新创建的空对象的引用，将该引用作为关键字this的值，且它还要对新创建的对象进行适当的初始化。
+        举例如下：
+            /*定义*/
+            function Rectangle(w, h)
+            {
+                this.width = w;
+                this.height = h;
+            }
+            /*调用*/
+            var rect = new Rectangle(2, 5);
+    > 原型对象与继承
+        . prototype属性
+            JavaScript中的所有函数都有prototype属性，它引用了一个对象。每个对象都继承原型对象的所有属性。
+        . 实例属性
+            对象中用构造函数创建或初始化的属性
+        . 实例方法
+        . 类属性
+            类似静态成员
+        . 类方法
+            类似静态函数
+    > 方法
+        toString()
+        toLocaleString()
+        valueof()
+        hasOwnProperty()
+        propertyIsEnumerable()
+        isPrototypeOf()
+    >> 属性 
+        constructor
+            每个对象都有constructor属性，引用的是用来初始化该对象的构造函数。
+
+> 数组
+    数组是一个对象类型。
+    >> 数组的创建
+        数组的创建是用构造函数Array()和运算符new创建的，有以下几种方式：
+            var a = new Array(); /*空数组*/ 
+            var b = new Array(5, 4, "test"); /*指定前n个元素*/ 
+            var c = new Array(10); /*指定数组长度*/ 
+            var d = [{1, {x:1, y:2}}, {2, {x:3, y:4}}];
+        数组用[]运算符来存取数组元素，[]运算符中是具有非负整数值的任意表达式，必须是大于等于0并小于2^32-1的整数。数组的第一个元素下标为0。
+        JavaScript中的数组是稀疏的，且它的数组个数不固定，可以在任意时刻改变元素个数。
+        通过设置数组的lenght属性来截断数组是惟一一种缩短数组长度的方法。使用delete运算符来删除数组中的元素，可以使那个元素变成未定义的，但数组的length属性并不会改变。
+    >> 数组方法
+        >>> join()
+        >>> reverse()
+        >>> sort()
+        >>> concat()
+        >>> slice()
+        >>> splice()
+        >>> push() pop()
+        >>> unshift() shift()
+        >>> toString() toSource()
+
+> 正则表达式
+    在JavaScript中，正则表达式由RegExp对象表示。
+    正则表达式直接量定义为包含在一对斜杠(/)之间的字符。
+    >> 具有特殊含义的符号,包括：
+        ^ $ . * ? - ! : | \ / () [] {}
+    >> 字符类
+        [...]   位于括号之内的任意字符
+        [^...]  不在括号之内的任意字符
+        .       除换行符和其他Unicode行终止符之外的任意字符
+        \w      任何ASCII单字字符，等价于[a-zA-Z0-9_]
+        \W      任何ASCII非单字字符，等价于[^a-zA-Z0-9_]
+        \s      任何Unicode空白符
+        \S      任何非Unicode空白符
+        \d      任何ASCII数字，等价于[0-9]
+        \D      除了ASCII数字外的任何字符，等价于[^0-9]
+        [\b]    退格直接量(特例)
+    >> 重复字符
+        {n,m}   匹配前一项至少n次，但是不能超过m次
+        {n,}    匹配前一项>=n次
+        {n}     匹配前一项恰好n次
+        ?       匹配前一项0或1次，等价于{0,1}
+        +       匹配前一项至少一次，等价于{1,}
+        *       匹配前一项0次或多次，等价于{0,}
+    >> 选择、分组和引用字符
+        |       选择
+        (...)   组合
+        (?:...) 只组合，但是不记忆与该组匹配的字符
+        \n      和第n个分组第一次匹配的字符相匹配。组号是从左到右计数的左括号数，以(?:形式分组的组不编码
+        带括号的子表达式的用途
+            a.把单独的项目组合成子表达式
+            b.在完整的模式中定义子模式
+            c.定义子表达式，以便在同一正则表达式后部引用。
+                引用通过字符"\"后加一位或多位数字实现，数字指定了带括号的子表达式在正则表达式中的位置。如\1引用的是第一个带括号的子表达式。
+                由于子表达式可以被嵌套在别的子表达式中，所以它的位置是被计数的左括号的位置。
+    >> 锚字符
+        ^       匹配字符串的开头，在多行检索中，匹配一行的开头
+        $       匹配字符串的结尾，在多行检索中，匹配一行的结尾
+        \b      匹配一个词语的边界。
+        \B      匹配非词语边界的字符
+        (?=p)   正前向声明，要求接下来的字符都与模式p匹配，但是不包括匹配中的那些字符
+        (?!p)   反前向声明，要求接下来的字符不模式p匹配
+    >> 标志
+        i       执行大小写不敏感的匹配
+        g       执行一个全局匹配
+        m       多行模式，^匹配一行的开头和字符串的开头，$匹配一行的结尾或字符串的结尾
+        标记位于第二个斜杠之后，如：/\bjava\b/gi
+
+> RegExp
+    >> 用于模式匹配的String的方法
+        search()
+        replace()
+        match()
+        split()
+    >> RegExp 方法
+        exec()
+        test()
+    >> RegExp 实例属性
+        source global ignoreCase multiline lastIndex
+
+> Web浏览器中的JS
+    在JavaScript客户端中，Windown对象是全局对象。
+    >> 客户端的对象层次和文档对象模型
+        当前窗口
+            .self,window,parent,top   各种Window对象
+            .navigator   浏览器对象，可以获取浏览器信息
+            .frames[]    Window对象数组
+            .location    Location对象
+            .history     History对象
+            .document    Document对象
+                ..forms[]   Form对象数组
+                    ...elements[]
+                        HTML表单元素objects: Button,Checkbox,FileUppload,Hidden,Password,Radio,Reset,Select(options[] Option对象数组),Submit,Text,Textarea
+                ..anchors[] Anchor对象数组
+                ..links[]   Link对象数组
+                ..images[]  Image对象数组
+                ..applets[] applets数组
+                ..embeds[]  嵌入对象数组
+            .screen      Screen对象
+    >> 在HTML中嵌入JavaScript
+        >>> JavaScript嵌入HTML中的方法有：
+            a.放置在标记对<script></script>之间
+                标记对可出现在<head>部分，也可以出现在<body>部分。
+            b.放置在标记<script>的src属性指定的外部文件中
+                JavaScript文件扩展名通常是.js。
+            c.放置在事件处理程序中，由onclick或onmouseover这样的HTML属性值指定
+                常见事件处理程序：onclick, onmousedown, onmouseup, onmouseover, onmouseout, onchange, onsubmit, onreset
+            d.作为URL的主体，这个URL使用物殊的javascript:协议
+                例子：
+                    javascript:window.open("about:blank"); void 0;
+                例子中的"void 0;"是为了确保当前URL中的最后一条语句没有返回值，以避免不恰当的返回值改变当前显示的文档的JavaScript代码。
+                采用这种语法，可以在浏览器的Location域中，也可以在书签中使用，还可以被用途超链接的hret值。
+        >>> JavaScript程序的执行
+            a. 脚本
+                按照语句出现顺序执行
+            b. 函数
+            c. 事件处理程序
+                onload(), onunload()
+
+> 窗口与框架
+    >> Window对象
+        >>> 属性
+            closed
+            defaultStatus,status
+            document
+                对Document对象的引用，该对象代表在窗口中显示的HTML文档。
+            frames[]
+            history
+            location
+            name
+            opener
+            parent
+            self
+            top
+            window
+        >>> 方法
+            alert() confirm() prompt()
+            close()
+            focus() blur()
+            moveBy() moveTo()
+            open()
+            print()
+            resizeBy() resizeTo()
+            scrollBy() scrollTo()
+            setInterval() clearInterval()
+            setTimeout() clearTimeout()
+
+> Document对象
+    >> 方法
+        close()
+        open()
+        write()
+        writeIn()
+    >> 属性
+        alinkColor, linkColor, vlinkColor
+        anchors[]
+        applets[]
+        bgColor, fgColor
+        cookie
+        domain
+        forms[]
+        images[]
+        lastModified
+        links[]
+        location
+        referrer
+        title
+        URL
+        embeds[]
+
+> frame对象
+    用于表示文档中的框架
+    >> 属性
+        frames[]
+        length
+        name
+        document
+        parent
+        self
+        top
+    >> 方法
+        blur()
+        clearInterval()
+        clearTimeout()
+        focus()
+        setInteral()
+        setTimeout()
+    >> 事件
+        onBlur
+        onFocus
+        onResize
+
+> navigator
+    >> 属性
+        appCodeName     浏览器代码名称
+        appName
+        appVersion
+        mimeTypes
+        platform
+        plugins
+        userAgent
+    >> 方法
+        javaEnabled
+
+> 表单
+    >> Form对象
+        JavaScript的Form对象代表了一个HTML表单。
+        a.方法
+            submit()    提交表单
+            reset()     重置表单
+        b.事件处理程序
+            onsubmit    探测表单的提交
+            onreset     探测表单的重置
+    >> 表单元素
+        a. 属性
+            type
+            form
+            name
+            value
+        b. 事件处理程序
+            onclick
+            onchange
+            onfocus
+            onblur      失去焦点时触发
+
+> cookie
+    >> cookie用于少量数据的不经常存储。每个Web服务器保存的cookie数不超过20个，每个cookie不超过4k。
+    >> cookie除了名字与值外，还具有4个可选性质：
+        expires     指定生存期
+        path        指定与此cookie关联在一起的网页，默认是当前路径及以下的网页关联在一起
+        domain      域名，默认为创建cookie的网页所在的服务器名，不能将一个cookie的域设置为服务器所在的域之外的域。
+        secure      布尔值，默认情况下，cookie是不安全的普通的HTTP连接。
+
+> 文档对象模型
+    DOM解析
+
+> 级联样式表和动态HTML
+    >> CSS
+        . CSS样式是由一个"名称/值"的性质对列表指定，性质对之间用分号(:)隔开，性质对之间用冒号(;)隔开。
+        . css样式性质及值
+            |       由"|"分隔的值表示二选一
+            ||      必须指定至少一个，且将以任意顺序出现。
+            []      用于对值分组
+            *       表示前面的值或值组可以出现0次或多次
+            +       表示前面的值或值组可以出现至少1次
+            ?       表示前面的项目可选，可以出现0或1次
+            {m,n}   表示出现次数范围
+        . 样式性质应用
+            在HTML标记的style性质中使用
+            使用样式表
+            使用不同的选择器，指定要应用样式的元素的类
+        . CSS的定位和可见性性质
+            position    定位类型，static|absolue|fixed|relative
+            top,left,bottom,right
+            width,height
+            z-index
+            display     设置如何并且是否显示一个元素
+            visibility
+            clip        定义元素的“裁剪区”，只显示元素在这个区域中的部分
+            overflow    设置当元素比分配给它的空间大时应采取什么操作
+    >> CSS在JavaScript中的脚本样式
+        . 命名
+            CSS中样式生性的名字在一般含有边字符(-)，在JavaScript的CSS2Properties属性名则删除了边字符，且紧接在连字符后的字母改为大写;
+            JavaScript没有使用float关键字，但对其作保留，因此，遇到CSS的float性质，将其对应为cssFloat;
+        . 作用样式属性
+            在使用CSS2Properties对象的样式属性时，所有值必须是字符串;
+            所有定位属性都要求有单位;
+
+> 事件和事件处理
+    > 事件处理程序的注册
+        在2级事件模型中，可以调用对象的addEventListener()方法为特定元素注册事件处理程序。
+    > Event
+        . 属性
+            type
+            target
+            currentTarget
+            eventPhase
+            timeStamp
+            bubbles
+            cancleable
+        . 方法
+            stopPropagation()
+            preventDefault()
+    > UIEvent
+        . 属性
+            view
+            detail
+    > MouseEvent
+        . 属性
+            button
+            altKey,ctrlKey,metaKey,shiftKey
+            clientX,clientY
+            screenX,screenY
+            relatedTarget
+
+
+
+/********************/
+跳转表
